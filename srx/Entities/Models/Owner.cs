@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace srx.Entities;
+namespace srx.Entities.Models;
 
 [Table("owner")]
 public class Owner

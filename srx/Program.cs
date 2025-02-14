@@ -15,6 +15,7 @@ internal class Program
                 string.Concat(Directory.GetCurrentDirectory(), "/nlog.config")
             );
         builder.Services.ConfigureLoggerService();
+        builder.Services.ConfigureSqlite(builder.Configuration);
 
         // Add services to the container.
         builder.Services.AddControllers();
