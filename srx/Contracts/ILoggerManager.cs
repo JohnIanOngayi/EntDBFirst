@@ -1,4 +1,4 @@
-﻿namespace Contracts;
+﻿namespace srx.Contracts;
 
 public interface ILoggerManager
 {

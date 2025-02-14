@@ -1,5 +1,5 @@
-using Contracts;
 using Microsoft.AspNetCore.Mvc;
+using srx.Contracts;
 
 [ApiController]
 [Route("/api/[controller]")]

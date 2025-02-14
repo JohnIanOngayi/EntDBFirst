@@ -1,5 +1,5 @@
-using Contracts;
 using NLog;
+using srx.Contracts;
 
 namespace LoggerService;
 

@@ -1,5 +1,5 @@
-using Contracts;
 using LoggerService;
+using srx.Contracts;
 
 namespace ServiceExtensions;
 
