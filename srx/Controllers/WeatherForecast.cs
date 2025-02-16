@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using srx.Contracts;
 
+namespace srx.Controllers;
+
 [ApiController]
 [Route("/api/[controller]")]
 public class WeatherForecastController : ControllerBase
@@ -20,7 +22,7 @@ public class WeatherForecastController : ControllerBase
         var domesticAccounts = _repository.Account.FindByCondition(x =>
             x.AccountType.Equals("Domestic")
         );
-        var owners = _repository.Owner.FindAll();
+        var owners = _repository.Owner.GetAllOwners();
 
         return new string[] { "value1", "value2" };
     }

@@ -5,7 +5,7 @@ namespace srx.ServiceExtensions;
 
 public static class RepositoryExtension
 {
-    public static void ConfigureRepositoryWraapper(this IServiceCollection services)
+    public static void ConfigureRepositoryWrapper(this IServiceCollection services)
     {
         services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
     }

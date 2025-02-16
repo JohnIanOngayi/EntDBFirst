@@ -16,6 +16,7 @@ internal class Program
             );
         builder.Services.ConfigureLoggerService();
         builder.Services.ConfigureSqlite(builder.Configuration);
+        builder.Services.ConfigureRepositoryWrapper();
 
         // Add services to the container.
         builder.Services.AddControllers();
