@@ -1,7 +1,7 @@
-using LoggerService;
+using srx.LoggerService;
 using srx.Contracts;
 
-namespace ServiceExtensions;
+namespace srx.ServiceExtensions;
 
 public static class ServiceExtensions
 {

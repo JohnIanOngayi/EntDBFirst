@@ -1,6 +1,6 @@
 using NLog;
 using Scalar.AspNetCore;
-using ServiceExtensions;
+using srx.ServiceExtensions;
 
 internal class Program
 {

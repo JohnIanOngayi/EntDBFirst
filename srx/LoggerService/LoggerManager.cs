@@ -1,7 +1,7 @@
 using NLog;
 using srx.Contracts;
 
-namespace LoggerService;
+namespace srx.LoggerService;
 
 public class LoggerManager : ILoggerManager
 {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using srx.Entities;
 
-namespace ServiceExtensions;
+namespace srx.ServiceExtensions;
 
 public static class DBExtensions
 {
