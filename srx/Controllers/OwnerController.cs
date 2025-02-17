@@ -1,5 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using srx;
 using srx.Contracts;
+using srx.Entities.Dtos;
 
 namespace srx.Controllers;
 
@@ -9,11 +12,13 @@ public class OwnerController : ControllerBase
 {
     private ILoggerManager _logger;
     private IRepositoryWrapper _repository;
+    private IMapper _mapper;
 
-    public OwnerController(ILoggerManager logger, IRepositoryWrapper repository)
+    public OwnerController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
     {
         _logger = logger;
         _repository = repository;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -23,11 +28,37 @@ public class OwnerController : ControllerBase
         {
             var owners = _repository.Owner.GetAllOwners();
             _logger.LogInfo($"Returned All Owners From Database");
-            return Ok(owners);
+            var ownersResult = _mapper.Map<IEnumerable<OwnerDto>>(owners);
+            return Ok(ownersResult);
         }
         catch (Exception ex)
         {
             _logger.LogError($"GetAllOwners Error: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
+    [HttpGet]
+    public IActionResult GetOwnerById(Guid id)
+    {
+        try
+        {
+            var owner = _repository.Owner.GetOwnerById(id);
+            if (owner is null)
+            {
+                _logger.LogError($"Owner with id: {id} hasn't been found in db");
+                return NotFound();
+            }
+            else
+            {
+                _logger.LogInfo($"Returned owner with id: {id}");
+                var ownerResult = _mapper.Map<OwnerDto>(owner);
+                return Ok(ownerResult);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"GetOwnerById Error: {ex.Message}");
             return StatusCode(500, "Internal Server Error");
         }
     }

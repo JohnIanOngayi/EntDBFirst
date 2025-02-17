@@ -13,4 +13,9 @@ public class OwnerRepository : RepositoryBase<Owner>, IOwnerRepository
     {
         return FindAll().OrderBy(owner => owner.Name).ToList();
     }
+
+    public Owner GetOwnerById(Guid ownerId)
+    {
+        return FindByCondition(owner => owner.Id == ownerId).FirstOrDefault();
+    }
 }
