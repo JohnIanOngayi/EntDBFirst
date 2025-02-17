@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using srx.Contracts;
 using srx.Entities;
 using srx.Entities.Models;
@@ -16,6 +17,13 @@ public class OwnerRepository : RepositoryBase<Owner>, IOwnerRepository
 
     public Owner GetOwnerById(Guid ownerId)
     {
-        return FindByCondition(owner => owner.Id == ownerId).FirstOrDefault();
+        return FindByCondition(owner => owner.Id.Equals(ownerId)).FirstOrDefault();
+    }
+
+    public Owner GetOwnerWithDetails(Guid ownerId)
+    {
+        return FindByCondition(owner => owner.Id.Equals(ownerId))
+            .Include(owner => owner.Accounts)
+            .FirstOrDefault();
     }
 }

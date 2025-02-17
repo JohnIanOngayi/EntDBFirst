@@ -62,4 +62,29 @@ public class OwnerController : ControllerBase
             return StatusCode(500, "Internal Server Error");
         }
     }
+
+    [HttpGet("{id}/account")]
+    public IActionResult GetOwnerWithDetails(Guid id)
+    {
+        try
+        {
+            var owner = _repository.Owner.GetOwnerWithDetails(id);
+            if (owner is null)
+            {
+                _logger.LogError($"Owner with id: {id} hasn't been found in db");
+                return NotFound();
+            }
+            else
+            {
+                _logger.LogInfo($"Returned onwner with details for id: {id}");
+                var ownerResult = _mapper.Map<OwnerWithAccountDto>(owner);
+                return Ok(ownerResult);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"GetOwnerWithDetails Error: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
 }
